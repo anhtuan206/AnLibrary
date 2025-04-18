@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AnLibraryDb.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AnLibraryDbStoreContainer">
+    <EntitySet Name="Accounts" EntityType="AnLibraryDb.Store.Accounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Books" EntityType="AnLibraryDb.Store.Books" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categories" EntityType="AnLibraryDb.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CategoryBook" Association="AnLibraryDb.Store.CategoryBook">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Book" EntitySet="Books" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fullname" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IdNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Birthday" Type="datetime" Nullable="true" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Author" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Publisher" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PublishYear" Type="int" Nullable="true" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChangedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="true" />
+    <Property Name="Category_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Categoryname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ChangedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChangedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="CategoryBook">
+    <End Role="Category" Type="AnLibraryDb.Store.Categories" Multiplicity="1" />
+    <End Role="Book" Type="AnLibraryDb.Store.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AnLibraryDb" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="AnLibraryDbContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="AnLibraryDb.Account" />
+          <EntitySet Name="Books" EntityType="AnLibraryDb.Book" />
+          <EntitySet Name="Categories" EntityType="AnLibraryDb.Category" />
+          <AssociationSet Name="CategoryBook" Association="AnLibraryDb.CategoryBook">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fullname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Publisher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PublishYear" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="ChangedBy" Type="String" Nullable="false" />
+          <Property Name="ChangedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="AnLibraryDb.CategoryBook" FromRole="Book" ToRole="Category" />
+          <Property Name="CategoryId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Categoryname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ChangedBy" Type="String" Nullable="false" />
+          <Property Name="ChangedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="AnLibraryDb.CategoryBook" FromRole="Category" ToRole="Book" />
+        </EntityType>
+        <Association Name="CategoryBook">
+          <End Type="AnLibraryDb.Category" Role="Category" Multiplicity="1" />
+          <End Type="AnLibraryDb.Book" Role="Book" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AnLibraryDbStoreContainer" CdmEntityContainer="AnLibraryDbContainer">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="IsTypeOf(AnLibraryDb.Account)">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="IsTypeOf(AnLibraryDb.Book)">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BookName" ColumnName="BookName" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="PublishYear" ColumnName="PublishYear" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+          <ScalarProperty Name="ChangedDate" ColumnName="ChangedDate" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(AnLibraryDb.Category)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+          <ScalarProperty Name="Categoryname" ColumnName="Categoryname" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+          <ScalarProperty Name="ChangedDate" ColumnName="ChangedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CategoryBook" TypeName="AnLibraryDb.CategoryBook" StoreEntitySet="Books">
+      <EndProperty Name="Category">
+        <ScalarProperty Name="Id" ColumnName="Category_Id" />
+      </EndProperty>
+      <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
