@@ -31,9 +31,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtPublishYear = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.cbbCategory = new System.Windows.Forms.ComboBox();
-            this.txtDescription = new System.Windows.Forms.Label();
+            this.labelDescription = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,9 +45,6 @@
             this.txtPublisher = new System.Windows.Forms.TextBox();
             this.txtAuthor = new System.Windows.Forms.TextBox();
             this.txtBookName = new System.Windows.Forms.TextBox();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.txtPublishYear = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -73,9 +73,9 @@
             this.panel2.Controls.Add(this.txtPublishYear);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnSave);
-            this.panel2.Controls.Add(this.richTextBox1);
-            this.panel2.Controls.Add(this.cbbCategory);
             this.panel2.Controls.Add(this.txtDescription);
+            this.panel2.Controls.Add(this.cbbCategory);
+            this.panel2.Controls.Add(this.labelDescription);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
@@ -91,13 +91,40 @@
             this.panel2.Size = new System.Drawing.Size(443, 371);
             this.panel2.TabIndex = 3;
             // 
-            // richTextBox1
+            // txtPublishYear
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(123, 207);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(294, 96);
-            this.richTextBox1.TabIndex = 14;
-            this.richTextBox1.Text = "";
+            this.txtPublishYear.Location = new System.Drawing.Point(123, 126);
+            this.txtPublishYear.Name = "txtPublishYear";
+            this.txtPublishYear.Size = new System.Drawing.Size(100, 20);
+            this.txtPublishYear.TabIndex = 17;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(122, 329);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(22, 329);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(123, 207);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(294, 96);
+            this.txtDescription.TabIndex = 14;
+            this.txtDescription.Text = "";
             // 
             // cbbCategory
             // 
@@ -108,14 +135,14 @@
             this.cbbCategory.TabIndex = 12;
             this.cbbCategory.SelectedIndexChanged += new System.EventHandler(this.cbbCategory_SelectedIndexChanged);
             // 
-            // txtDescription
+            // labelDescription
             // 
-            this.txtDescription.AutoSize = true;
-            this.txtDescription.Location = new System.Drawing.Point(19, 210);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(34, 13);
-            this.txtDescription.TabIndex = 11;
-            this.txtDescription.Text = "Mô tả";
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new System.Drawing.Point(19, 210);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(34, 13);
+            this.labelDescription.TabIndex = 11;
+            this.labelDescription.Text = "Mô tả";
             // 
             // label7
             // 
@@ -183,33 +210,6 @@
             this.txtBookName.Size = new System.Drawing.Size(294, 20);
             this.txtBookName.TabIndex = 10;
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(122, 329);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 16;
-            this.btnCancel.Text = "Hủy";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(22, 329);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.Text = "Lưu";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // txtPublishYear
-            // 
-            this.txtPublishYear.Location = new System.Drawing.Point(123, 126);
-            this.txtPublishYear.Name = "txtPublishYear";
-            this.txtPublishYear.Size = new System.Drawing.Size(100, 20);
-            this.txtPublishYear.TabIndex = 17;
-            // 
             // Book_NewEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,7 +233,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label txtDescription;
+        private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -243,7 +243,7 @@
         private System.Windows.Forms.TextBox txtBookName;
         private System.Windows.Forms.ComboBox cbbCategory;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtDescription;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtPublishYear;

@@ -12,32 +12,26 @@ namespace AnLibrary.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Book
+    public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Book()
+        public Customer()
         {
-            this.OrderItems = new HashSet<OrderItem>();
-            this.WareHouses = new HashSet<WareHouse>();
+            this.Orders = new HashSet<Order>();
         }
     
         public int Id { get; set; }
-        public string BookName { get; set; }
-        public string Author { get; set; }
-        public string Publisher { get; set; }
-        public Nullable<int> PublishYear { get; set; }
-        public string Description { get; set; }
-        public bool isActive { get; set; }
-        public System.DateTime CreatedDate { get; set; }
+        public string CustomerName { get; set; }
+        public string Birthday { get; set; }
+        public string Mobile { get; set; }
+        public string IdentityNumber { get; set; }
+        public string Address { get; set; }
+        public string CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public string ChangedBy { get; set; }
         public System.DateTime ChangedDate { get; set; }
-        public Nullable<int> CategoryId { get; set; }
+        public string ChangedBy { get; set; }
     
-        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WareHouse> WareHouses { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

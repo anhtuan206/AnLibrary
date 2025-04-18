@@ -54,7 +54,7 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
                 txtAuthor.Text = _book.Author;
                 txtPublisher.Text = _book.Publisher;
                 txtPublishYear.Text = _book.PublishYear.ToString();
-                txtDescription.Text = _book.Description;
+                labelDescription.Text = _book.Description;
                 cbbCategory.SelectedValue = _book.Category.Id;
             }
         }
@@ -142,7 +142,7 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
             string author = txtAuthor.Text.Trim();
             string publisher = txtPublisher.Text.Trim();
             string year = txtPublishYear.Text.Trim();
-            string description = txtDescription.Text.Trim();
+            string description = labelDescription.Text.Trim();
             string currentUser = AppSession.CurrentUser.Fullname;
 
             if (string.IsNullOrWhiteSpace(bookName))

@@ -31,25 +31,6 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
             isLoading = false;
 
         }
-        private object ProjectBookToDisplay(Book b)
-        {
-            return new
-            {
-                b.Id,
-                b.BookName,
-                b.Author,
-                b.Publisher,
-                b.PublishYear,
-                b.Description,
-                isActive = b.isActive ? "Có" : "Không",
-                CreatedDate = b.CreatedDate.ToString("dd-MM-yyyy HH:mm"),
-                b.CreatedBy,
-                b.ChangedBy,
-                ChangedDate= b.ChangedDate.ToString("dd-MM-yyyy HH:mm"),
-                Category = b.Category?.Categoryname
-            };
-        }
-
         private void ChangeGridHeader()
         {
             if (dgvBook.Columns.Count == 0) return; // Không làm gì nếu chưa có cột
@@ -109,18 +90,23 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
         {
             using (var db = new AnLibraryDbContainer())
             {
-                var books = db.Books.Include("Category").ToList()
-                                    .Select(b => ProjectBookToDisplay(b))
-                                    .ToList();
-
-                if (books.Any())
+                var rawList = db.Books.Include("Category").ToList();
+                var bookList = rawList.Select(b => new
                 {
-                    dgvBook.DataSource = books;
-                }
-                else
-                {
-                    dgvBook.DataSource = new List<BookDisplayModel>();
-                }
+                    b.Id,
+                    b.BookName,
+                    b.Author,
+                    b.Publisher,
+                    b.PublishYear,
+                    b.Description,
+                    b.isActive,
+                    CreatedDate = b.CreatedDate.ToString("dd-MM-yyyy HH:mm"),
+                    b.CreatedBy,
+                    b.ChangedBy,
+                    ChangedDate = b.ChangedDate.ToString("dd-MM-yyyy HH:mm"),
+                    CategoryName = b.Category?.Categoryname
+                }).ToList();
+                dgvBook.DataSource = bookList;
                 ChangeGridHeader();
             }
         }
@@ -150,16 +136,25 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
                     query = query.Where(b => b.Category.Id == selectedCategoryId.Value);
                 }
 
-                var books = query.ToList()
-                                 .Select(b => ProjectBookToDisplay(b))
-                                 .ToList();
-
-                dgvBook.DataSource = books;
-                ChangeGridHeader();
+                var rawList = query.ToList();
+                var bookList = rawList.Select(b => new
+                {
+                    b.Id,
+                    b.BookName,
+                    b.Author,
+                    b.Publisher,
+                    b.PublishYear,
+                    b.Description,
+                    b.isActive,
+                    CreatedDate = b.CreatedDate.ToString("dd-MM-yyyy HH:mm"),
+                    b.CreatedBy,
+                    b.ChangedBy,
+                    ChangedDate = b.ChangedDate.ToString("dd-MM-yyyy HH:mm"),
+                    CategoryName = b.Category?.Categoryname
+                }).ToList();
+                dgvBook.DataSource = bookList;
             }
         }
-
-
 
         private void LoadCategoriesFilter()
         {
@@ -178,7 +173,7 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
             }
         }
 
-
+        /// Class to represent the items in the ComboBox
         public class ComboBoxItem
         {
             public string Text { get; set; }
@@ -203,10 +198,11 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
         {
             var addForm = new Category_NewEdit(); // No category provided -> New category mode
             addForm.FormClosed += (s, args) => LoadCategoriesToGrid();
+            addForm.FormClosed += (s, args) => LoadCategoriesFilter();
             addForm.ShowDialog();
 
-            LoadCategoriesFilter(); // Reload categories if necessary
-            PerformSearch();  // Or refresh the books list
+            //LoadCategoriesFilter(); // Reload categories if necessary
+            //PerformSearch();  // Or refresh the books list
         }
 
         private void btnEditCategory_Click(object sender, EventArgs e)
@@ -222,10 +218,11 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
                     {
                         var editForm = new Category_NewEdit(category); // Pass the selected category for editing
                         editForm.FormClosed += (s, args) => LoadCategoriesToGrid();
+                        editForm.FormClosed += (s, args) => LoadCategoriesFilter();
                         editForm.ShowDialog();
 
-                        LoadCategoriesFilter(); // Reload categories if necessary
-                        PerformSearch();  // Or refresh the books list
+                        //LoadCategoriesFilter(); // Reload categories if necessary
+                        //PerformSearch();  // Or refresh the books list
                     }
                     else
                     {

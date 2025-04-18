@@ -9,9 +9,29 @@
     <EntitySet Name="Accounts" EntityType="AnLibraryDb.Store.Accounts" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Books" EntityType="AnLibraryDb.Store.Books" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Categories" EntityType="AnLibraryDb.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="AnLibraryDb.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Orders" EntityType="AnLibraryDb.Store.Orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderItems" EntityType="AnLibraryDb.Store.OrderItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WareHouses" EntityType="AnLibraryDb.Store.WareHouses" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="CategoryBook" Association="AnLibraryDb.Store.CategoryBook">
       <End Role="Category" EntitySet="Categories" />
       <End Role="Book" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerOrder" Association="AnLibraryDb.Store.CustomerOrder">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="OrderOrderItem" Association="AnLibraryDb.Store.OrderOrderItem">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="BookOrderItem" Association="AnLibraryDb.Store.BookOrderItem">
+      <End Role="Book" EntitySet="Books" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="BookWareHouse" Association="AnLibraryDb.Store.BookWareHouse">
+      <End Role="Book" EntitySet="Books" />
+      <End Role="WareHouse" EntitySet="WareHouses" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Accounts">
@@ -43,7 +63,7 @@
     <Property Name="ChangedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ChangedDate" Type="datetime" Nullable="false" />
     <Property Name="CategoryId" Type="int" Nullable="true" />
-    <Property Name="Category_Id" Type="int" Nullable="false" />
+    <Property Name="Category_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Categories">
     <Key>
@@ -58,8 +78,68 @@
     <Property Name="ChangedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ChangedDate" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Birthday" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdentityNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="ChangedBy" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Birthday" Type="datetime" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdentityNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="ChangedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LeaseOrder" Type="bit" Nullable="false" />
+    <Property Name="ReturnOrder" Type="bit" Nullable="false" />
+    <Property Name="ImportOrder" Type="bit" Nullable="false" />
+    <Property Name="Customer_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="OrderItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Author" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Publisher" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PublishYear" Type="int" Nullable="true" />
+    <Property Name="Order_Id" Type="int" Nullable="false" />
+    <Property Name="Book_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WareHouses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TotalQty" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AvailableQty" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChangedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="Book_Id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="CategoryBook">
-    <End Role="Category" Type="AnLibraryDb.Store.Categories" Multiplicity="1" />
+    <End Role="Category" Type="AnLibraryDb.Store.Categories" Multiplicity="0..1" />
     <End Role="Book" Type="AnLibraryDb.Store.Books" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Category">
@@ -67,6 +147,58 @@
       </Principal>
       <Dependent Role="Book">
         <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerOrder">
+    <End Role="Customer" Type="AnLibraryDb.Store.Customers" Multiplicity="0..1" />
+    <End Role="Order" Type="AnLibraryDb.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderOrderItem">
+    <End Role="Order" Type="AnLibraryDb.Store.Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderItem" Type="AnLibraryDb.Store.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookOrderItem">
+    <End Role="Book" Type="AnLibraryDb.Store.Books" Multiplicity="1" />
+    <End Role="OrderItem" Type="AnLibraryDb.Store.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="Book_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookWareHouse">
+    <End Role="Book" Type="AnLibraryDb.Store.Books" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WareHouse" Type="AnLibraryDb.Store.WareHouses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WareHouse">
+        <PropertyRef Name="Book_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -81,6 +213,26 @@
           <AssociationSet Name="CategoryBook" Association="AnLibraryDb.CategoryBook">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <EntitySet Name="Customers" EntityType="AnLibraryDb.Customer" />
+          <EntitySet Name="Orders" EntityType="AnLibraryDb.Order" />
+          <EntitySet Name="OrderItems" EntityType="AnLibraryDb.OrderItem" />
+          <AssociationSet Name="CustomerOrder" Association="AnLibraryDb.CustomerOrder">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OrderOrderItem" Association="AnLibraryDb.OrderOrderItem">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="BookOrderItem" Association="AnLibraryDb.BookOrderItem">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <EntitySet Name="WareHouses" EntityType="AnLibraryDb.WareHouse" />
+          <AssociationSet Name="BookWareHouse" Association="AnLibraryDb.BookWareHouse">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="WareHouse" EntitySet="WareHouses" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Account">
@@ -113,6 +265,8 @@
           <Property Name="ChangedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="AnLibraryDb.CategoryBook" FromRole="Book" ToRole="Category" />
           <Property Name="CategoryId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="OrderItems" Relationship="AnLibraryDb.BookOrderItem" FromRole="Book" ToRole="OrderItem" />
+          <NavigationProperty Name="WareHouses" Relationship="AnLibraryDb.BookWareHouse" FromRole="Book" ToRole="WareHouse" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -129,8 +283,91 @@
           <NavigationProperty Name="Books" Relationship="AnLibraryDb.CategoryBook" FromRole="Category" ToRole="Book" />
         </EntityType>
         <Association Name="CategoryBook">
-          <End Type="AnLibraryDb.Category" Role="Category" Multiplicity="1" />
+          <End Type="AnLibraryDb.Category" Role="Category" Multiplicity="0..1" />
           <End Type="AnLibraryDb.Book" Role="Book" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" />
+          <Property Name="Birthday" Type="String" Nullable="false" />
+          <Property Name="Mobile" Type="String" Nullable="false" />
+          <Property Name="IdentityNumber" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="ChangedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ChangedBy" Type="String" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="AnLibraryDb.CustomerOrder" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" />
+          <Property Name="Mobile" Type="String" Nullable="false" />
+          <Property Name="IdentityNumber" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="ChangedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ChangedBy" Type="String" Nullable="false" />
+          <Property Name="LeaseOrder" Type="Boolean" Nullable="false" />
+          <Property Name="ReturnOrder" Type="Boolean" Nullable="false" />
+          <Property Name="ImportOrder" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="AnLibraryDb.CustomerOrder" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="OrderItems" Relationship="AnLibraryDb.OrderOrderItem" FromRole="Order" ToRole="OrderItem" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Publisher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PublishYear" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="AnLibraryDb.OrderOrderItem" FromRole="OrderItem" ToRole="Order" />
+          <NavigationProperty Name="Book" Relationship="AnLibraryDb.BookOrderItem" FromRole="OrderItem" ToRole="Book" />
+        </EntityType>
+        <Association Name="CustomerOrder">
+          <End Type="AnLibraryDb.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="AnLibraryDb.Order" Role="Order" Multiplicity="*" />
+        </Association>
+        <Association Name="OrderOrderItem">
+          <End Type="AnLibraryDb.Order" Role="Order" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AnLibraryDb.OrderItem" Role="OrderItem" Multiplicity="*" >
+          </End>
+        </Association>
+        <Association Name="BookOrderItem">
+          <End Type="AnLibraryDb.Book" Role="Book" Multiplicity="1" />
+          <End Type="AnLibraryDb.OrderItem" Role="OrderItem" Multiplicity="*" />
+        </Association>
+        <EntityType Name="WareHouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookName" Type="String" Nullable="false" />
+          <Property Name="TotalQty" Type="String" Nullable="false" />
+          <Property Name="AvailableQty" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="ChangedBy" Type="String" Nullable="false" />
+          <Property Name="ChangedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="AnLibraryDb.BookWareHouse" FromRole="WareHouse" ToRole="Book" />
+        </EntityType>
+        <Association Name="BookWareHouse">
+          <End Type="AnLibraryDb.Book" Role="Book" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AnLibraryDb.WareHouse" Role="WareHouse" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -184,11 +421,105 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(AnLibraryDb.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ChangedDate" ColumnName="ChangedDate" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="IsTypeOf(AnLibraryDb.Order)">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ChangedDate" ColumnName="ChangedDate" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+          <ScalarProperty Name="LeaseOrder" ColumnName="LeaseOrder" />
+          <ScalarProperty Name="ReturnOrder" ColumnName="ReturnOrder" />
+          <ScalarProperty Name="ImportOrder" ColumnName="ImportOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderItems">
+      <EntityTypeMapping TypeName="IsTypeOf(AnLibraryDb.OrderItem)">
+        <MappingFragment StoreEntitySet="OrderItems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BookName" ColumnName="BookName" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="PublishYear" ColumnName="PublishYear" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WareHouses">
+      <EntityTypeMapping TypeName="IsTypeOf(AnLibraryDb.WareHouse)">
+        <MappingFragment StoreEntitySet="WareHouses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BookName" ColumnName="BookName" />
+          <ScalarProperty Name="TotalQty" ColumnName="TotalQty" />
+          <ScalarProperty Name="AvailableQty" ColumnName="AvailableQty" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+          <ScalarProperty Name="ChangedDate" ColumnName="ChangedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="CategoryBook" TypeName="AnLibraryDb.CategoryBook" StoreEntitySet="Books">
       <EndProperty Name="Category">
         <ScalarProperty Name="Id" ColumnName="Category_Id" />
       </EndProperty>
       <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Category_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerOrder" TypeName="AnLibraryDb.CustomerOrder" StoreEntitySet="Orders">
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Customer_Id" />
+      </EndProperty>
+      <EndProperty Name="Order">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Customer_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OrderOrderItem" TypeName="AnLibraryDb.OrderOrderItem" StoreEntitySet="OrderItems">
+      <EndProperty Name="Order">
+        <ScalarProperty Name="Id" ColumnName="Order_Id" />
+      </EndProperty>
+      <EndProperty Name="OrderItem">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BookOrderItem" TypeName="AnLibraryDb.BookOrderItem" StoreEntitySet="OrderItems">
+      <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="Book_Id" />
+      </EndProperty>
+      <EndProperty Name="OrderItem">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BookWareHouse" TypeName="AnLibraryDb.BookWareHouse" StoreEntitySet="WareHouses">
+      <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="Book_Id" />
+      </EndProperty>
+      <EndProperty Name="WareHouse">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

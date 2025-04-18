@@ -70,6 +70,12 @@
     <Compile Include="FormList\Form_Main\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormList\Form_QuanLyKhachHang\Customer_NewEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormList\Form_QuanLyKhachHang\Customer_NewEdit.Designer.cs">
+      <DependentUpon>Customer_NewEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormList\Form_QuanLyNhanVien\NhanVien_NewEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,18 @@
     <Compile Include="Model\Category.cs">
       <DependentUpon>AnLibraryDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Customer.cs">
+      <DependentUpon>AnLibraryDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Order.cs">
+      <DependentUpon>AnLibraryDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrderItem.cs">
+      <DependentUpon>AnLibraryDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WareHouse.cs">
+      <DependentUpon>AnLibraryDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormList\Form_Login\Login.resx">
@@ -131,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormList\Form_Main\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormList\Form_QuanLyKhachHang\Customer_NewEdit.resx">
+      <DependentUpon>Customer_NewEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormList\Form_QuanLyNhanVien\NhanVien_NewEdit.resx">
       <DependentUpon>NhanVien_NewEdit.cs</DependentUpon>
@@ -178,7 +199,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FormList\Form_QuanLyKhachHang\" />
     <Folder Include="FormList\Form_QuanLyMuonSach\" />
   </ItemGroup>
   <ItemGroup>
