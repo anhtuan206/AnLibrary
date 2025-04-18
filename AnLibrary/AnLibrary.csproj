@@ -76,6 +76,12 @@
     <Compile Include="FormList\Form_QuanLyKhachHang\Customer_NewEdit.Designer.cs">
       <DependentUpon>Customer_NewEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormList\Form_QuanLyMuonSach\LeaseOrder_NewEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormList\Form_QuanLyMuonSach\LeaseOrder_NewEdit.Designer.cs">
+      <DependentUpon>LeaseOrder_NewEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormList\Form_QuanLyNhanVien\NhanVien_NewEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     <EmbeddedResource Include="FormList\Form_QuanLyKhachHang\Customer_NewEdit.resx">
       <DependentUpon>Customer_NewEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormList\Form_QuanLyMuonSach\LeaseOrder_NewEdit.resx">
+      <DependentUpon>LeaseOrder_NewEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormList\Form_QuanLyNhanVien\NhanVien_NewEdit.resx">
       <DependentUpon>NhanVien_NewEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,9 +207,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FormList\Form_QuanLyMuonSach\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

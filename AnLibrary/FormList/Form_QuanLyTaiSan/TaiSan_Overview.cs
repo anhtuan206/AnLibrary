@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace AnLibrary.FormList.Form_QuanLyTaiSan
 {
-    public partial class TaiSan_Overview : Form
+    public partial class OrderItem_NewEdit : Form
     {
         private bool isLoading = false;
 
-        public TaiSan_Overview()
+        public OrderItem_NewEdit()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace AnLibrary.FormList.Form_QuanLyTaiSan
 {
-    partial class TaiSan_Overview
+    partial class OrderItem_NewEdit
     {
         /// <summary>
         /// Required designer variable.

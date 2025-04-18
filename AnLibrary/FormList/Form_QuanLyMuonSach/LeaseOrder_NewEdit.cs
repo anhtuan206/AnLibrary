@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AnLibrary.FormList.Form_QuanLyKhachHang
+namespace AnLibrary.FormList.Form_QuanLyMuonSach
 {
-    public partial class Customer_NewEdit : Form
+    public partial class LeaseOrder_NewEdit : Form
     {
-        public Customer_NewEdit()
+        public LeaseOrder_NewEdit()
         {
             InitializeComponent();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
