@@ -35,6 +35,8 @@
             this.btnTaiSanOverview = new System.Windows.Forms.Button();
             this.btnNhanVienOverview = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnLeaseOrderOverview = new System.Windows.Forms.Button();
+            this.btnImportOrderOverview = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -75,6 +77,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Controls.Add(this.btnImportOrderOverview);
+            this.panel2.Controls.Add(this.btnLeaseOrderOverview);
             this.panel2.Controls.Add(this.btnTaiSanOverview);
             this.panel2.Controls.Add(this.btnNhanVienOverview);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -112,6 +116,25 @@
             this.panel3.Size = new System.Drawing.Size(1084, 647);
             this.panel3.TabIndex = 4;
             // 
+            // btnLeaseOrderOverview
+            // 
+            this.btnLeaseOrderOverview.Location = new System.Drawing.Point(9, 101);
+            this.btnLeaseOrderOverview.Name = "btnLeaseOrderOverview";
+            this.btnLeaseOrderOverview.Size = new System.Drawing.Size(218, 40);
+            this.btnLeaseOrderOverview.TabIndex = 2;
+            this.btnLeaseOrderOverview.Text = "Quản lý mượn sách";
+            this.btnLeaseOrderOverview.UseVisualStyleBackColor = true;
+            this.btnLeaseOrderOverview.Click += new System.EventHandler(this.btnLeaseOrderOverview_Click);
+            // 
+            // btnImportOrderOverview
+            // 
+            this.btnImportOrderOverview.Location = new System.Drawing.Point(9, 147);
+            this.btnImportOrderOverview.Name = "btnImportOrderOverview";
+            this.btnImportOrderOverview.Size = new System.Drawing.Size(218, 40);
+            this.btnImportOrderOverview.TabIndex = 3;
+            this.btnImportOrderOverview.Text = "Quản lý nhập sách";
+            this.btnImportOrderOverview.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,7 +144,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "An Library | Trang chủ";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -139,6 +162,8 @@
         private System.Windows.Forms.Button btnTaiSanOverview;
         private System.Windows.Forms.Button btnNhanVienOverview;
         private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.Button btnLeaseOrderOverview;
+        private System.Windows.Forms.Button btnImportOrderOverview;
         //private System.Diagnostics.PerformanceCounter performanceCounter1;
     }
 }

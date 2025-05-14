@@ -11,7 +11,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static AnLibrary.FormList.Form_QuanLyTaiSan.OrderItem_NewEdit;
+using static AnLibrary.FormList.Form_QuanLyTaiSan.TaiSan_Overview;
 
 namespace AnLibrary.FormList.Form_QuanLyTaiSan
 {

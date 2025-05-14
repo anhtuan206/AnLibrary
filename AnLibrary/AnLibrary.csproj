@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\AppSession.cs" />
+    <Compile Include="Class\BookHelper.cs" />
     <Compile Include="Class\EntityAuditHelper.cs" />
     <Compile Include="FormList\Form_Login\Login.cs">
       <SubType>Form</SubType>
@@ -81,6 +82,18 @@
     </Compile>
     <Compile Include="FormList\Form_QuanLyMuonSach\LeaseOrder_NewEdit.Designer.cs">
       <DependentUpon>LeaseOrder_NewEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormList\Form_QuanLyMuonSach\LeaseOrder_Overview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormList\Form_QuanLyMuonSach\LeaseOrder_Overview.Designer.cs">
+      <DependentUpon>LeaseOrder_Overview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormList\Form_QuanLyMuonSach\OrderItem_NewEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormList\Form_QuanLyMuonSach\OrderItem_NewEdit.Designer.cs">
+      <DependentUpon>OrderItem_NewEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="FormList\Form_QuanLyNhanVien\NhanVien_NewEdit.cs">
       <SubType>Form</SubType>
@@ -161,6 +174,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormList\Form_QuanLyMuonSach\LeaseOrder_NewEdit.resx">
       <DependentUpon>LeaseOrder_NewEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormList\Form_QuanLyMuonSach\LeaseOrder_Overview.resx">
+      <DependentUpon>LeaseOrder_Overview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormList\Form_QuanLyMuonSach\OrderItem_NewEdit.resx">
+      <DependentUpon>OrderItem_NewEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormList\Form_QuanLyNhanVien\NhanVien_NewEdit.resx">
       <DependentUpon>NhanVien_NewEdit.cs</DependentUpon>

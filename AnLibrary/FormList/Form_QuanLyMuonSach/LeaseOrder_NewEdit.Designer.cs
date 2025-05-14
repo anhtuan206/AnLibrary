@@ -34,34 +34,34 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panelCustomer = new System.Windows.Forms.Panel();
             this.panelOrderItem = new System.Windows.Forms.Panel();
+            this.dgvOrderItem = new System.Windows.Forms.DataGridView();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnAddOrderItem = new System.Windows.Forms.Button();
+            this.btnEditOrderItem = new System.Windows.Forms.Button();
+            this.btnDeleteOrderItem = new System.Windows.Forms.Button();
+            this.panelCustomer = new System.Windows.Forms.Panel();
+            this.txtReturnDate = new System.Windows.Forms.DateTimePicker();
+            this.txtLeaseDate = new System.Windows.Forms.DateTimePicker();
+            this.txtBirthday = new System.Windows.Forms.DateTimePicker();
             this.txtAddress = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdentity = new System.Windows.Forms.TextBox();
             this.txtMobile = new System.Windows.Forms.TextBox();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.btnDeleteOrderItem = new System.Windows.Forms.Button();
-            this.btnEditOrderItem = new System.Windows.Forms.Button();
-            this.btnAddOrderItem = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtBirthday = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtLeaseDate = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtReturnDate = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panelCustomer.SuspendLayout();
             this.panelOrderItem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItem)).BeginInit();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panelCustomer.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -121,6 +121,66 @@
             this.panel3.Size = new System.Drawing.Size(922, 613);
             this.panel3.TabIndex = 6;
             // 
+            // panelOrderItem
+            // 
+            this.panelOrderItem.Controls.Add(this.dgvOrderItem);
+            this.panelOrderItem.Controls.Add(this.panel6);
+            this.panelOrderItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelOrderItem.Location = new System.Drawing.Point(0, 200);
+            this.panelOrderItem.Name = "panelOrderItem";
+            this.panelOrderItem.Size = new System.Drawing.Size(922, 413);
+            this.panelOrderItem.TabIndex = 1;
+            // 
+            // dgvOrderItem
+            // 
+            this.dgvOrderItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrderItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOrderItem.Location = new System.Drawing.Point(0, 45);
+            this.dgvOrderItem.Name = "dgvOrderItem";
+            this.dgvOrderItem.Size = new System.Drawing.Size(922, 368);
+            this.dgvOrderItem.TabIndex = 1;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.btnAddOrderItem);
+            this.panel6.Controls.Add(this.btnEditOrderItem);
+            this.panel6.Controls.Add(this.btnDeleteOrderItem);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(922, 45);
+            this.panel6.TabIndex = 0;
+            // 
+            // btnAddOrderItem
+            // 
+            this.btnAddOrderItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddOrderItem.Location = new System.Drawing.Point(658, 7);
+            this.btnAddOrderItem.Name = "btnAddOrderItem";
+            this.btnAddOrderItem.Size = new System.Drawing.Size(90, 23);
+            this.btnAddOrderItem.TabIndex = 2;
+            this.btnAddOrderItem.Text = "Thêm chi tiết";
+            this.btnAddOrderItem.UseVisualStyleBackColor = true;
+            // 
+            // btnEditOrderItem
+            // 
+            this.btnEditOrderItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditOrderItem.Location = new System.Drawing.Point(754, 6);
+            this.btnEditOrderItem.Name = "btnEditOrderItem";
+            this.btnEditOrderItem.Size = new System.Drawing.Size(75, 23);
+            this.btnEditOrderItem.TabIndex = 1;
+            this.btnEditOrderItem.Text = "Sửa";
+            this.btnEditOrderItem.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteOrderItem
+            // 
+            this.btnDeleteOrderItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteOrderItem.Location = new System.Drawing.Point(835, 7);
+            this.btnDeleteOrderItem.Name = "btnDeleteOrderItem";
+            this.btnDeleteOrderItem.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteOrderItem.TabIndex = 0;
+            this.btnDeleteOrderItem.Text = "Xóa";
+            this.btnDeleteOrderItem.UseVisualStyleBackColor = true;
+            // 
             // panelCustomer
             // 
             this.panelCustomer.Controls.Add(this.txtReturnDate);
@@ -143,15 +203,26 @@
             this.panelCustomer.Size = new System.Drawing.Size(922, 200);
             this.panelCustomer.TabIndex = 0;
             // 
-            // panelOrderItem
+            // txtReturnDate
             // 
-            this.panelOrderItem.Controls.Add(this.dataGridView1);
-            this.panelOrderItem.Controls.Add(this.panel6);
-            this.panelOrderItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelOrderItem.Location = new System.Drawing.Point(0, 200);
-            this.panelOrderItem.Name = "panelOrderItem";
-            this.panelOrderItem.Size = new System.Drawing.Size(922, 413);
-            this.panelOrderItem.TabIndex = 1;
+            this.txtReturnDate.Location = new System.Drawing.Point(581, 158);
+            this.txtReturnDate.Name = "txtReturnDate";
+            this.txtReturnDate.Size = new System.Drawing.Size(294, 20);
+            this.txtReturnDate.TabIndex = 25;
+            // 
+            // txtLeaseDate
+            // 
+            this.txtLeaseDate.Location = new System.Drawing.Point(129, 159);
+            this.txtLeaseDate.Name = "txtLeaseDate";
+            this.txtLeaseDate.Size = new System.Drawing.Size(294, 20);
+            this.txtLeaseDate.TabIndex = 25;
+            // 
+            // txtBirthday
+            // 
+            this.txtBirthday.Location = new System.Drawing.Point(581, 17);
+            this.txtBirthday.Name = "txtBirthday";
+            this.txtBirthday.Size = new System.Drawing.Size(294, 20);
+            this.txtBirthday.TabIndex = 25;
             // 
             // txtAddress
             // 
@@ -179,6 +250,15 @@
             this.label5.TabIndex = 20;
             this.label5.Text = "Số CCCD";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(477, 164);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Ngày trả";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -187,6 +267,15 @@
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 21;
             this.label4.Text = "Số điện thoại";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 165);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Ngày mượn";
             // 
             // label3
             // 
@@ -227,95 +316,6 @@
             this.txtCustomerName.Size = new System.Drawing.Size(294, 20);
             this.txtCustomerName.TabIndex = 18;
             // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.btnAddOrderItem);
-            this.panel6.Controls.Add(this.btnEditOrderItem);
-            this.panel6.Controls.Add(this.btnDeleteOrderItem);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(922, 45);
-            this.panel6.TabIndex = 0;
-            // 
-            // btnDeleteOrderItem
-            // 
-            this.btnDeleteOrderItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteOrderItem.Location = new System.Drawing.Point(835, 7);
-            this.btnDeleteOrderItem.Name = "btnDeleteOrderItem";
-            this.btnDeleteOrderItem.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteOrderItem.TabIndex = 0;
-            this.btnDeleteOrderItem.Text = "Xóa phiếu";
-            this.btnDeleteOrderItem.UseVisualStyleBackColor = true;
-            // 
-            // btnEditOrderItem
-            // 
-            this.btnEditOrderItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditOrderItem.Location = new System.Drawing.Point(754, 6);
-            this.btnEditOrderItem.Name = "btnEditOrderItem";
-            this.btnEditOrderItem.Size = new System.Drawing.Size(75, 23);
-            this.btnEditOrderItem.TabIndex = 1;
-            this.btnEditOrderItem.Text = "Sửa";
-            this.btnEditOrderItem.UseVisualStyleBackColor = true;
-            // 
-            // btnAddOrderItem
-            // 
-            this.btnAddOrderItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddOrderItem.Location = new System.Drawing.Point(673, 7);
-            this.btnAddOrderItem.Name = "btnAddOrderItem";
-            this.btnAddOrderItem.Size = new System.Drawing.Size(75, 23);
-            this.btnAddOrderItem.TabIndex = 2;
-            this.btnAddOrderItem.Text = "Thêm sách";
-            this.btnAddOrderItem.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 45);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(922, 368);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // txtBirthday
-            // 
-            this.txtBirthday.Location = new System.Drawing.Point(581, 17);
-            this.txtBirthday.Name = "txtBirthday";
-            this.txtBirthday.Size = new System.Drawing.Size(294, 20);
-            this.txtBirthday.TabIndex = 25;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 165);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Ngày mượn";
-            // 
-            // txtLeaseDate
-            // 
-            this.txtLeaseDate.Location = new System.Drawing.Point(129, 159);
-            this.txtLeaseDate.Name = "txtLeaseDate";
-            this.txtLeaseDate.Size = new System.Drawing.Size(294, 20);
-            this.txtLeaseDate.TabIndex = 25;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(477, 164);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 13);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Ngày trả";
-            // 
-            // txtReturnDate
-            // 
-            this.txtReturnDate.Location = new System.Drawing.Point(581, 158);
-            this.txtReturnDate.Name = "txtReturnDate";
-            this.txtReturnDate.Size = new System.Drawing.Size(294, 20);
-            this.txtReturnDate.TabIndex = 25;
-            // 
             // LeaseOrder_NewEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,15 +326,16 @@
             this.Controls.Add(this.panel1);
             this.Name = "LeaseOrder_NewEdit";
             this.Text = "Tạo/sửa phiếu";
+            this.Load += new System.EventHandler(this.LeaseOrder_NewEdit_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panelOrderItem.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItem)).EndInit();
+            this.panel6.ResumeLayout(false);
             this.panelCustomer.ResumeLayout(false);
             this.panelCustomer.PerformLayout();
-            this.panelOrderItem.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -362,7 +363,7 @@
         private System.Windows.Forms.TextBox txtMobile;
         private System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.Button btnEditOrderItem;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvOrderItem;
         private System.Windows.Forms.DateTimePicker txtReturnDate;
         private System.Windows.Forms.DateTimePicker txtLeaseDate;
         private System.Windows.Forms.DateTimePicker txtBirthday;

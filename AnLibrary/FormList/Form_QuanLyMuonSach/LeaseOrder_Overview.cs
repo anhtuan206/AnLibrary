@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace AnLibrary.FormList.Form_QuanLyMuonSach
 {
-    public partial class LeaseOrder_NewEdit : Form
+    public partial class LeaseOrder_Overview : Form
     {
-        public LeaseOrder_NewEdit()
+        public LeaseOrder_Overview()
         {
             InitializeComponent();
-        }
-
-        private void LeaseOrder_NewEdit_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

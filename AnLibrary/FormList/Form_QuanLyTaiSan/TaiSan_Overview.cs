@@ -1,4 +1,5 @@
-﻿using AnLibrary.Model;
+﻿using AnLibrary.Class;
+using AnLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,11 +13,12 @@ using System.Windows.Forms;
 
 namespace AnLibrary.FormList.Form_QuanLyTaiSan
 {
-    public partial class OrderItem_NewEdit : Form
+    public partial class TaiSan_Overview : Form
     {
         private bool isLoading = false;
+        private BookHelper _bookHelper = new BookHelper();
 
-        public OrderItem_NewEdit()
+        public TaiSan_Overview()
         {
             InitializeComponent();
         }
@@ -26,160 +28,23 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
             isLoading = true;
             LoadBooksToGrid();
             LoadCategoriesToGrid();
-            LoadCategoriesFilter();
-            //PerformSearch();
+            _bookHelper.LoadCategoriesFilter(cbCategory);
             isLoading = false;
 
         }
-        private void ChangeGridHeader()
-        {
-            if (dgvBook.Columns.Count == 0) return; // Không làm gì nếu chưa có cột
-
-            if (dgvBook.Columns.Contains("Id"))
-                dgvBook.Columns["Id"].Visible = false;
-
-            if (dgvBook.Columns.Contains("BookName"))
-                dgvBook.Columns["BookName"].HeaderText = "Tên sách";
-
-            if (dgvBook.Columns.Contains("Author"))
-                dgvBook.Columns["Author"].HeaderText = "Tác giả";
-
-            if (dgvBook.Columns.Contains("Publisher"))
-                dgvBook.Columns["Publisher"].HeaderText = "Nhà xuất bản";
-
-            if (dgvBook.Columns.Contains("PublishYear"))
-                dgvBook.Columns["PublishYear"].HeaderText = "Năm xuất bản";
-
-            if (dgvBook.Columns.Contains("Description"))
-                dgvBook.Columns["Description"].HeaderText = "Mô tả";
-
-            if (dgvBook.Columns.Contains("isActive"))
-                dgvBook.Columns["isActive"].HeaderText = "Trạng thái";
-
-            if (dgvBook.Columns.Contains("CreatedDate"))
-                dgvBook.Columns["CreatedDate"].HeaderText = "Ngày tạo";
-
-            if (dgvBook.Columns.Contains("CreatedBy"))
-                dgvBook.Columns["CreatedBy"].HeaderText = "Người tạo";
-
-            if (dgvBook.Columns.Contains("ChangedBy"))
-                dgvBook.Columns["ChangedBy"].HeaderText = "Người sửa";
-
-            if (dgvBook.Columns.Contains("ChangedDate"))
-                dgvBook.Columns["ChangedDate"].HeaderText = "Ngày sửa";
-
-            if (dgvBook.Columns.Contains("CategoryName")) // sửa lại đúng tên cột
-                dgvBook.Columns["CategoryName"].HeaderText = "Chuyên mục";
-        }
-        public class BookDisplayModel
-        {
-            public int Id { get; set; }
-            public string BookName { get; set; }
-            public string Author { get; set; }
-            public string Publisher { get; set; }
-            public int PublishYear { get; set; }
-            public string Description { get; set; }
-            public bool isActive { get; set; }
-            public DateTime CreatedDate { get; set; }
-            public string CreatedBy { get; set; }
-            public string ChangedBy { get; set; }
-            public DateTime ChangedDate { get; set; }
-            public string CategoryName { get; set; }
-        }
         private void LoadBooksToGrid()
         {
-            using (var db = new AnLibraryDbContainer())
-            {
-                var rawList = db.Books.Include("Category").ToList();
-                var bookList = rawList.Select(b => new
-                {
-                    b.Id,
-                    b.BookName,
-                    b.Author,
-                    b.Publisher,
-                    b.PublishYear,
-                    b.Description,
-                    b.isActive,
-                    CreatedDate = b.CreatedDate.ToString("dd-MM-yyyy HH:mm"),
-                    b.CreatedBy,
-                    b.ChangedBy,
-                    ChangedDate = b.ChangedDate.ToString("dd-MM-yyyy HH:mm"),
-                    CategoryName = b.Category?.Categoryname
-                }).ToList();
-                dgvBook.DataSource = bookList;
-                ChangeGridHeader();
-            }
+            dgvBook.DataSource = _bookHelper.GetBookList();
+            BookHelper.ChangeGridHeader(dgvBook);
         }
         private void PerformSearch()
         {
             string keyword = txtSearch.Text.Trim().ToLower();
             int? selectedCategoryId = cbCategory.SelectedIndex > 0
-                ? (int?)((ComboBoxItem)cbCategory.SelectedItem).Value
+                ? (int?)((BookHelper.ComboBoxItem)cbCategory.SelectedItem).Value
                 : null;
 
-            using (var db = new AnLibraryDbContainer())
-            {
-                var query = db.Books.Include("Category").AsQueryable();
-
-                if (!string.IsNullOrEmpty(keyword))
-                {
-                    query = query.Where(b =>
-                        b.Id.ToString().Contains(keyword) ||
-                        b.BookName.ToLower().Contains(keyword) ||
-                        b.Author.ToLower().Contains(keyword) ||
-                        b.Publisher.ToLower().Contains(keyword) ||
-                        b.PublishYear.ToString().Contains(keyword));
-                }
-
-                if (selectedCategoryId.HasValue && selectedCategoryId.Value > 0)
-                {
-                    query = query.Where(b => b.Category.Id == selectedCategoryId.Value);
-                }
-
-                var rawList = query.ToList();
-                var bookList = rawList.Select(b => new
-                {
-                    b.Id,
-                    b.BookName,
-                    b.Author,
-                    b.Publisher,
-                    b.PublishYear,
-                    b.Description,
-                    b.isActive,
-                    CreatedDate = b.CreatedDate.ToString("dd-MM-yyyy HH:mm"),
-                    b.CreatedBy,
-                    b.ChangedBy,
-                    ChangedDate = b.ChangedDate.ToString("dd-MM-yyyy HH:mm"),
-                    CategoryName = b.Category?.Categoryname
-                }).ToList();
-                dgvBook.DataSource = bookList;
-            }
-        }
-
-        private void LoadCategoriesFilter()
-        {
-            using (var db = new AnLibraryDbContainer())
-            {
-                var categories = db.Categories
-                    .Select(c => new ComboBoxItem { Value = c.Id, Text = c.Categoryname })
-                    .ToList();
-
-                categories.Insert(0, new ComboBoxItem { Text = "-- Tất cả --", Value = 0 });
-
-                cbCategory.DataSource = categories;
-                cbCategory.DisplayMember = "Text";
-                cbCategory.ValueMember = "Value";
-                cbCategory.SelectedIndex = 0;
-            }
-        }
-
-        /// Class to represent the items in the ComboBox
-        public class ComboBoxItem
-        {
-            public string Text { get; set; }
-            public int Value { get; set; }
-
-            public override string ToString() => Text;
+            dgvBook.DataSource = _bookHelper.SearchBooks(keyword, selectedCategoryId);
         }
 
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -198,11 +63,8 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
         {
             var addForm = new Category_NewEdit(); // No category provided -> New category mode
             addForm.FormClosed += (s, args) => LoadCategoriesToGrid();
-            addForm.FormClosed += (s, args) => LoadCategoriesFilter();
+            addForm.FormClosed += (s, args) => _bookHelper.LoadCategoriesFilter(cbCategory);
             addForm.ShowDialog();
-
-            //LoadCategoriesFilter(); // Reload categories if necessary
-            //PerformSearch();  // Or refresh the books list
         }
 
         private void btnEditCategory_Click(object sender, EventArgs e)
@@ -218,11 +80,9 @@ namespace AnLibrary.FormList.Form_QuanLyTaiSan
                     {
                         var editForm = new Category_NewEdit(category); // Pass the selected category for editing
                         editForm.FormClosed += (s, args) => LoadCategoriesToGrid();
-                        editForm.FormClosed += (s, args) => LoadCategoriesFilter();
+                        editForm.FormClosed += (s, args) => _bookHelper.LoadCategoriesFilter(cbCategory);
                         editForm.ShowDialog();
 
-                        //LoadCategoriesFilter(); // Reload categories if necessary
-                        //PerformSearch();  // Or refresh the books list
                     }
                     else
                     {
